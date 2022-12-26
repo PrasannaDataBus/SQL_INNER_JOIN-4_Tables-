@@ -1,0 +1,32 @@
+select distinct  user.civility as title,
+user.firstname as first_name,
+user.lastname as last_name,
+user.job as Job,
+user.organisation as Company_name,
+user.city as City,
+user.country as Country,
+user.email as Email,
+user.email1 as Email2,
+user.email2 as Email3,
+user.interests as Likes,
+user.num_user as No_user,
+order.Cost_TTC as Amount,
+order.DUE_TTC as Due,
+order.num_order as No_order,
+order.num_invoice as No_invoice,
+order.date_invoice as date,
+role.name_role as role_name
+from
+user
+inner join second_user
+on second_user.id_user = user.id_user
+inner join order_list
+on order_list.id_order_list = second_user.id_order_list
+inner join order
+on order.id_order = order_list.id_order
+inner join role
+on role.id_role = order_list.id_role
+where second_user.id_secondary = ''
+and user.id = ''
+and order.id = ''
+and Country not like '';
